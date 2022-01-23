@@ -1,0 +1,6 @@
+name: VIPUtilities
+version: '${project.version}'
+main: dev.nanosync.viputilities.VIPUtilities
+api-version: 1.16
+authors: [ Martinfer22 ]
+description: Um plugin para ajudar a gerenciar um jogador VIP e entregar mais benefícios
