@@ -5,15 +5,14 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeType;
-import org.bukkit.command.CommandSender;
 
 import java.time.Duration;
 import java.util.Collection;
 
 public class LuckPermsAPI {
 
-    public String getPlayerGroup(CommandSender player, Collection<String> vipGroups){
-        User user = LuckPermsProvider.get().getUserManager().getUser(player.getName());
+    public String getPlayerGroup(String player, Collection<String> vipGroups){
+        User user = getLuckPermsUser(player);
         if (user == null) return null;
         Collection<Node> nodes = user.data().toCollection();
         for (Node node : nodes) {
@@ -26,7 +25,7 @@ public class LuckPermsAPI {
         return null;
     }
 
-    public boolean hasVIPPlayer(CommandSender player, Collection<String> vipGroups){
+    public boolean hasVIPPlayer(String player, Collection<String> vipGroups){
         return getPlayerGroup(player, vipGroups) != null;
     }
 
@@ -34,20 +33,20 @@ public class LuckPermsAPI {
         return LuckPermsProvider.get().getGroupManager().getGroup(group) != null;
     }
 
-    public Duration getExpiryTime(CommandSender player, String group){
-        User user = LuckPermsProvider.get().getUserManager().getUser(player.getName());
-        if (user == null) return null;
+    public long getExpiryTime(String player, String group){
+        User user = getLuckPermsUser(player);
+        if (user == null) return 0;
         Collection<Node> nodes = user.data().toCollection();
         for (Node node: nodes) {
             if (node.getKey().equals("group." + group)){
-                return node.getExpiryDuration();
+                return node.getExpiryDuration().getSeconds();
             }
         }
-        return null;
+        return 0;
     }
 
     public void addPlayerVIP(String player, String group, Integer days){
-        User user = LuckPermsProvider.get().getUserManager().getUser(player);
+        User user = getLuckPermsUser(player);
         if (user == null) return;
         user.setPrimaryGroup(group);
         Node node = Node.builder("group." + group)
@@ -60,7 +59,7 @@ public class LuckPermsAPI {
     }
 
     public void removePlayerVIP(String player, String playerGroup){
-        User user = LuckPermsProvider.get().getUserManager().getUser(player);
+        User user = getLuckPermsUser(player);
         if (user == null) return;
         Collection<Node> nodes = user.data().toCollection();
         for (Node node : nodes){
@@ -69,5 +68,9 @@ public class LuckPermsAPI {
                 LuckPermsProvider.get().getUserManager().saveUser(user);
             }
         }
+    }
+
+    private User getLuckPermsUser(String player){
+        return LuckPermsProvider.get().getUserManager().getUser(player);
     }
 }
