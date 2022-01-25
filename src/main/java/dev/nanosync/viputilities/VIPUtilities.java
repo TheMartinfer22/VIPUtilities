@@ -1,6 +1,6 @@
 package dev.nanosync.viputilities;
 
-import dev.nanosync.viputilities.commands.VIPManagerCommands;
+import dev.nanosync.viputilities.commands.GeneralVIPCommands;
 import me.saiintbrisson.bukkit.command.BukkitFrame;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,7 +10,7 @@ public final class VIPUtilities extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         BukkitFrame frame = new BukkitFrame(this);
-        frame.registerCommands(new VIPManagerCommands());
+        frame.registerCommands(new GeneralVIPCommands());
     }
 
     @Override
