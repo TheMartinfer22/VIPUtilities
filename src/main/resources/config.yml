@@ -2,6 +2,8 @@ DAYS: "dias"
 HOURS: "horas"
 MINUTES: "minutos"
 
+VIP_PERMISSION: "viputilities.vip"
+
 ExpiryVIPMessage: "O seu vip vai expirar em {days}, {hours}, {minutes}"
 ExpiryVIPOtherMessage: "O VIP de {player} vai expirar em {days}, {hours}, {minutes}"
 
@@ -10,6 +12,8 @@ ErrorSpecifyPlayerGroupRemove: "[Erro] Você deve especificar o jogador e o grup
 ErrorSpecifyGroup: "[Erro] Você deve especificar o grupo."
 ErrorSpecifyDays: "[Erro] Você deve especificar os dias."
 ErrorNoPermission: "[Erro] Você não possui permissão para isso."
+ErrorInvalidGroupVIP: "[Erro] O grupo vip inserido é inválido, adicione na configuração!"
+ErrorPlayerNotVIP: "[Erro] O jogador não é VIP."
 
 SuccessAdded: "[OK] Você adicionou o jogador ao VIP com sucesso!"
 SuccessRemoved: "[OK] Você retirou o VIP do jogador com sucesso!"
