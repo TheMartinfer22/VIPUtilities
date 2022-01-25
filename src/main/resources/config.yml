@@ -1,3 +1,19 @@
+DAYS: "dias"
+HOURS: "horas"
+MINUTES: "minutos"
+
+ExpiryVIPMessage: "O seu vip vai expirar em {days}, {hours}, {minutes}"
+ExpiryVIPOtherMessage: "O VIP de {player} vai expirar em {days}, {hours}, {minutes}"
+
+ErrorSpecifyPlayerGroupDaysAdd: "[Erro] Você deve especificar o jogador, grupo e dias para adicionar!"
+ErrorSpecifyPlayerGroupRemove: "[Erro] Você deve especificar o jogador e o grupo para remover!"
+ErrorSpecifyGroup: "[Erro] Você deve especificar o grupo."
+ErrorSpecifyDays: "[Erro] Você deve especificar os dias."
+ErrorNoPermission: "[Erro] Você não possui permissão para isso."
+
+SuccessAdded: "[OK] Você adicionou o jogador ao VIP com sucesso!"
+SuccessRemoved: "[OK] Você retirou o VIP do jogador com sucesso!"
+
 DiscordToken: ""
 VIPGroups:
   - "default"
