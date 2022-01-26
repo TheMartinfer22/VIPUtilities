@@ -4,7 +4,8 @@ import dev.nanosync.viputilities.VIPUtilities;
 
 public class ConfigManager {
     public static String getConfigMessage(String configPath){
-        return VIPUtilities.getInstance().getConfig().getString(configPath).replace("&", "§");
+        return VIPUtilities.getInstance().getConfig().getString(configPath)
+                .replace("&", "§");
     }
 
     public static String getMessageByConfigExpiry(String configPath, String playername, long days, long hours, long minutes) {
