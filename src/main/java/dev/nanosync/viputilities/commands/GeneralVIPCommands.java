@@ -3,16 +3,19 @@ package dev.nanosync.viputilities.commands;
 import dev.nanosync.viputilities.api.LuckPermsAPI;
 import dev.nanosync.viputilities.manager.ConfigManager;
 import dev.nanosync.viputilities.manager.TimeManager;
+import dev.nanosync.viputilities.service.DiscordService;
 import dev.nanosync.viputilities.service.VIPGroupService;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.command.Context;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
 public class GeneralVIPCommands {
 
-    LuckPermsAPI luckPermsAPI = new LuckPermsAPI();
+    private final LuckPermsAPI luckPermsAPI = new LuckPermsAPI();
+    private final DiscordService discordService = new DiscordService();
 
     @Command(name = "viputilities")
     public void mainCommand(Context<CommandExecutor> context){
@@ -80,6 +83,10 @@ public class GeneralVIPCommands {
 
             luckPermsAPI.addPlayerVIP(context.getArg(0), context.getArg(1), context.getArg(2, Integer.class));
             commandSender.sendMessage(ConfigManager.getConfigMessage("SuccessAdded"));
+            Bukkit.getServer().broadcastMessage(ConfigManager.getConfigMessage("BroadcastMessage")
+                    .replace("{player}", context.getArg(0))
+                    .replace("{group}", context.getArg(1)));
+            DiscordService.announceNewVip(context.getArg(0), context.getArg(1));
             return;
         }
         sendNoPermission(commandSender);
