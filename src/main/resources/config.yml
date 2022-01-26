@@ -1,5 +1,4 @@
 VIPGroups:
-  - "default"
   - "teste"
 
 DAYS: "dias"
@@ -8,21 +7,21 @@ MINUTES: "minutos"
 
 VIP_PERMISSION: "viputilities.vip"
 
-ExpiryVIPMessage: "O seu vip vai expirar em {days}, {hours}, {minutes}"
-ExpiryVIPOtherMessage: "O VIP de {player} vai expirar em {days}, {hours}, {minutes}"
+ExpiryVIPMessage: "&e[VIP&6Utilities] &aO seu vip vai expirar em {days}, {hours}, {minutes}"
+ExpiryVIPOtherMessage: "&e[VIP&6Utilities] &aO VIP de {player} vai expirar em {days}, {hours}, {minutes}"
 
-ErrorSpecifyPlayerGroupDaysAdd: "[Erro] Você deve especificar o jogador, grupo e dias para adicionar!"
-ErrorSpecifyPlayerGroupRemove: "[Erro] Você deve especificar o jogador e o grupo para remover!"
-ErrorSpecifyGroup: "[Erro] Você deve especificar o grupo."
-ErrorSpecifyDays: "[Erro] Você deve especificar os dias."
-ErrorNoPermission: "[Erro] Você não possui permissão para isso."
-ErrorInvalidGroupVIP: "[Erro] O grupo vip inserido é inválido, adicione na configuração!"
-ErrorPlayerNotVIP: "[Erro] O jogador não é VIP."
+ErrorSpecifyPlayerGroupDaysAdd: "&e[VIP&6Utilities] &cVocê deve especificar o jogador, grupo e dias para adicionar!"
+ErrorSpecifyPlayerGroupRemove: "&e[VIP&6Utilities] &cVocê deve especificar o jogador e o grupo para remover!"
+ErrorSpecifyGroup: "&e[VIP&6Utilities] &cVocê deve especificar o grupo."
+ErrorSpecifyDays: "&e[VIP&6Utilities] &cVocê deve especificar os dias."
+ErrorNoPermission: "&e[VIP&6Utilities] &cVocê não possui permissão para isso."
+ErrorInvalidGroupVIP: "&e[VIP&6Utilities] &cO grupo vip inserido é inválido, adicione na configuração!"
+ErrorPlayerNotVIP: "&e[VIP&6Utilities] &cO jogador não é VIP."
 
-SuccessAdded: "[OK] Você adicionou o jogador ao VIP com sucesso!"
-SuccessRemoved: "[OK] Você retirou o VIP do jogador com sucesso!"
+SuccessAdded: "&e[VIP&6Utilities] &aVocê adicionou o jogador ao VIP com sucesso!"
+SuccessRemoved: "&e[VIP&6Utilities] &aVocê retirou o VIP do jogador com sucesso!"
 
-BroadcastMessage: "O jogador {player} acaba de ter seu VIP {group} ativado!"
+BroadcastMessage: "&e[VIP&6Utilities] &aO jogador {player} acaba de ter seu VIP {group} ativado!"
 
 DiscordToken: ""
 GuildID: "912870091731918859"
