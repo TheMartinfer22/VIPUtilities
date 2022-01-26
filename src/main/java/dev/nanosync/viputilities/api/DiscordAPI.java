@@ -9,15 +9,15 @@ import net.dv8tion.jda.api.entities.Guild;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiscordConnector {
+public class DiscordAPI {
 
     private JDA jda;
     private String guildID;
     private List<Object> registeredListeners = new ArrayList<>();
 
+
     @SneakyThrows
-    public DiscordConnector(String guildID){
-        String token = VIPUtilities.getInstance().getConfig().getString("DiscordToken");
+    public void build(String token, String guildID){
         jda = JDABuilder.createDefault(token).build();
         this.guildID = guildID;
     }
@@ -47,7 +47,7 @@ public class DiscordConnector {
      * @param clazz : Classe que está presente a extensão de ListenerAdapter
      * @return this
      */
-    public DiscordConnector registerListener(Object clazz){
+    public DiscordAPI registerListener(Object clazz){
         registeredListeners.add(clazz);
         return this;
     }
