@@ -15,22 +15,24 @@ import org.bukkit.command.ConsoleCommandSender;
 public class GeneralVIPCommands {
 
     private final LuckPermsAPI luckPermsAPI = new LuckPermsAPI();
-    private final DiscordService discordService = new DiscordService();
 
     @Command(name = "viputilities")
     public void mainCommand(Context<CommandExecutor> context){
         CommandSender commandSender = (CommandSender) context.getSender();
 
-        if (isAdmin(commandSender)){
-            commandSender.sendMessage("Great you are admin see commands below");
-            return;
-        }
-
         if (isVIP(commandSender)){
-            commandSender.sendMessage("Great you are user see commands below");
+            commandSender.sendMessage("");
+            commandSender.sendMessage("§e⋙ VIP§6Utilities ⋘");
+            commandSender.sendMessage("");
+            if (isAdmin(commandSender)){
+                commandSender.sendMessage("§e→ §c/viputilities add <player> <group> <days>§e(§fSee your vip time§e)");
+                commandSender.sendMessage("§e→ §c/viputilities remove <player> <group>§e(§fSee your vip time§e)");
+                commandSender.sendMessage("§e→ §c/viputilities time <player>§e(§fSee your vip time§e)");
+            }
+            commandSender.sendMessage("§e→ §c/viputilities time §e(§fSee your vip time§e)");
+            commandSender.sendMessage("");
             return;
         }
-
         sendNoPermission(commandSender);
     }
 
@@ -38,6 +40,11 @@ public class GeneralVIPCommands {
     public void vipTimeCommand(Context<CommandExecutor> context){
         CommandSender commandSender = (CommandSender) context.getSender();
         if (isAdmin(commandSender)){
+            if (!luckPermsAPI.hasVIPPlayer(commandSender.getName(), VIPGroupService.getVIPGroups())){
+                commandSender.sendMessage(ConfigManager.getConfigMessage("ErrorPlayerNotVIP"));
+                return;
+            }
+
             if (context.argsCount() == 1){
                 String playerNickname = context.getArg(0);
                 if (!luckPermsAPI.hasVIPPlayer(playerNickname, VIPGroupService.getVIPGroups())){
@@ -53,7 +60,6 @@ public class GeneralVIPCommands {
             commandSender.sendMessage(getConfigExpiryTime(commandSender.getName(), "ExpiryVIPMessage"));
             return;
         }
-
         sendNoPermission(commandSender);
     }
 
@@ -103,6 +109,11 @@ public class GeneralVIPCommands {
 
             if (context.argsCount() < 2){
                 commandSender.sendMessage(ConfigManager.getConfigMessage("ErrorSpecifyGroup"));
+                return;
+            }
+
+            if (!luckPermsAPI.hasVIPPlayer(context.getArg(0), VIPGroupService.getVIPGroups())){
+                commandSender.sendMessage(ConfigManager.getConfigMessage("ErrorPlayerNotVIP"));
                 return;
             }
 
