@@ -1,5 +1,6 @@
 package dev.nanosync.viputilities.api;
 
+import dev.nanosync.viputilities.service.VIPGroupService;
 import net.luckperms.api.LuckPermsProvider;
 
 import net.luckperms.api.model.user.User;
@@ -8,6 +9,9 @@ import net.luckperms.api.node.NodeType;
 
 import java.time.Duration;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class LuckPermsAPI {
 
@@ -68,6 +72,22 @@ public class LuckPermsAPI {
                 LuckPermsProvider.get().getUserManager().saveUser(user);
             }
         }
+    }
+
+    public Map<String, String> getPlayersVIP(){
+        Set<User> loadedUsers = LuckPermsProvider.get().getUserManager().getLoadedUsers();
+        Map<String, String> vipPlayers = new HashMap<>();
+        for (User user : loadedUsers){
+            Collection<Node> nodes = user.data().toCollection();
+            for (Node node : nodes){
+                for (String vipGroup : VIPGroupService.getVIPGroups()){
+                    if (node.getKey().equals("group." + vipGroup)){
+                        vipPlayers.put(user.getUsername(), vipGroup);
+                    }
+                }
+            }
+        }
+        return vipPlayers;
     }
 
     private User getLuckPermsUser(String player){
