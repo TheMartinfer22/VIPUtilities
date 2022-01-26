@@ -1,3 +1,7 @@
+VIPGroups:
+  - "default"
+  - "teste"
+
 DAYS: "dias"
 HOURS: "horas"
 MINUTES: "minutos"
@@ -18,7 +22,9 @@ ErrorPlayerNotVIP: "[Erro] O jogador não é VIP."
 SuccessAdded: "[OK] Você adicionou o jogador ao VIP com sucesso!"
 SuccessRemoved: "[OK] Você retirou o VIP do jogador com sucesso!"
 
+BroadcastMessage: "O jogador {player} acaba de ter seu VIP {group} ativado!"
+
 DiscordToken: ""
-VIPGroups:
-  - "default"
-  - "teste"
+GuildID: "912870091731918859"
+ChannelID: "935365960209137745"
+AnnounceNewVipMessage: "**O jogador {player} acaba de ter seu VIP {group} ativado com sucesso!\n:tada: Parabéns, aproveite!**"
