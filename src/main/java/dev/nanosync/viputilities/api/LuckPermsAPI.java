@@ -8,10 +8,7 @@ import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeType;
 
 import java.time.Duration;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class LuckPermsAPI {
 
@@ -88,6 +85,11 @@ public class LuckPermsAPI {
             }
         }
         return vipPlayers;
+    }
+
+    public String getGroupDisplayName(String group){
+        String displayName = LuckPermsProvider.get().getGroupManager().getGroup(group).getDisplayName();
+        return Objects.requireNonNullElse(displayName, group);
     }
 
     private User getLuckPermsUser(String player){
