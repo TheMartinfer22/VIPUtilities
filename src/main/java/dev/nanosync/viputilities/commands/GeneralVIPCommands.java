@@ -19,15 +19,14 @@ public class GeneralVIPCommands {
     @Command(name = "viputilities")
     public void mainCommand(Context<CommandExecutor> context){
         CommandSender commandSender = (CommandSender) context.getSender();
-
         if (isVIP(commandSender)){
             commandSender.sendMessage("");
             commandSender.sendMessage("§e⋙ VIP§6Utilities ⋘");
             commandSender.sendMessage("");
             if (isAdmin(commandSender)){
-                commandSender.sendMessage("§e→ §c/viputilities add <player> <group> <days>§e(§fSee your vip time§e)");
-                commandSender.sendMessage("§e→ §c/viputilities remove <player> <group>§e(§fSee your vip time§e)");
-                commandSender.sendMessage("§e→ §c/viputilities time <player>§e(§fSee your vip time§e)");
+                commandSender.sendMessage("§e→ §c/viputilities add <player> <group> <days>§e(§fAdd player to a group VIP and define expiry days§e)");
+                commandSender.sendMessage("§e→ §c/viputilities remove <player> <group>§e(§fRemove a player group§e)");
+                commandSender.sendMessage("§e→ §c/viputilities time <player>§e(§fSee VIP time of player§e)");
             }
             commandSender.sendMessage("§e→ §c/viputilities time §e(§fSee your vip time§e)");
             commandSender.sendMessage("");
@@ -88,11 +87,14 @@ public class GeneralVIPCommands {
             }
 
             luckPermsAPI.addPlayerVIP(context.getArg(0), context.getArg(1), context.getArg(2, Integer.class));
+
             commandSender.sendMessage(ConfigManager.getConfigMessage("SuccessAdded"));
             Bukkit.getServer().broadcastMessage(ConfigManager.getConfigMessage("BroadcastMessage")
                     .replace("{player}", context.getArg(0))
-                    .replace("{group}", context.getArg(1)));
-            DiscordService.announceNewVip(context.getArg(0), context.getArg(1));
+                    .replace("{group}", luckPermsAPI.getGroupDisplayName(context.getArg(1))));
+
+            DiscordService.announceNewVip(context.getArg(0), luckPermsAPI.getGroupDisplayName(context.getArg(1)));
+
             return;
         }
         sendNoPermission(commandSender);
