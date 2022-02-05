@@ -1,23 +1,24 @@
 package dev.nanosync.viputilities;
 
-import dev.nanosync.viputilities.api.DiscordAPI;
+import dev.nanosync.nanoapi.external.DiscordConnector;
+import dev.nanosync.nanoapi.external.NanoDiscord;
 import dev.nanosync.viputilities.commands.GeneralVIPCommands;
 import me.saiintbrisson.bukkit.command.BukkitFrame;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class VIPUtilities extends JavaPlugin {
 
-    private static final DiscordAPI discordAPI = new DiscordAPI();
+    private static DiscordConnector discordConnector;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
+
+        discordConnector = new DiscordConnector();
+
         BukkitFrame frame = new BukkitFrame(this);
         frame.registerCommands(new GeneralVIPCommands());
 
-        if (!getConfig().getString("DiscordToken").isEmpty()) {
-            discordAPI.build(getConfig().getString("DiscordToken"), getConfig().getString("GuildID"));
-        }
     }
 
     @Override
@@ -25,8 +26,9 @@ public final class VIPUtilities extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public DiscordAPI getDiscordAPI(){
-        return discordAPI;
+    public static NanoDiscord getDiscord(){
+        if (discordConnector.isEnabled()) return discordConnector.getNanoDiscord();
+        return null;
     }
 
     public static VIPUtilities getInstance(){
