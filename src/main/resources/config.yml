@@ -23,7 +23,5 @@ SuccessRemoved: "&e[VIP&6Utilities] &aVocê retirou o VIP do jogador com sucesso
 
 BroadcastMessage: "&e[VIP&6Utilities] &aO jogador {player} acaba de ter seu VIP {group} ativado!"
 
-DiscordToken: ""
-GuildID: "912870091731918859"
-ChannelID: "935365960209137745"
-AnnounceNewVipMessage: "**O jogador {player} acaba de ter seu VIP {group} ativado com sucesso!\n:tada: Parabéns, aproveite!**"
+ChannelID: "913131412343898112"
+AnnounceNewVipMessage: ":star: Notificação de VIP\n\n**O jogador {player} acaba de ter seu VIP {group} ativado com sucesso!**\n\n`Parabéns, aproveite!` :tada: \n\n`Compre você também`: <#920736042913509426> :fire:"
